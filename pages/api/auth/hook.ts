@@ -10,7 +10,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
   // 2
   if (secret !== process.env.AUTH0_HOOK_SECRET) {
-    console.log("secret", secret, procecss.env.AUTH0_HOOK_SECRET);
+    console.log("secret", secret, process.env.AUTH0_HOOK_SECRET);
     return res.status(403).json({ message: `You must provide the secret 🤫` });
   }
   // 3
