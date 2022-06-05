@@ -137,10 +137,6 @@ export default Admin;
 export const getServerSideProps = async (ctx) => {
   const session = await getSession(ctx);
 
-  console.log("&&&&&&&&&START");
-  console.log(session);
-  console.log("&&&&&&&&&END");
-
   if (!session) {
     return {
       redirect: {
