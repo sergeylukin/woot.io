@@ -6,6 +6,15 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@api/*": ["pages/api/*"],
+      "@lib/*": ["lib/*"],
+      "@components/*": ["components/*"],
+      "@components": ["components/index"],
+      "@db/*": ["prisma/*"],
+      "@db": ["prisma/index"]
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,

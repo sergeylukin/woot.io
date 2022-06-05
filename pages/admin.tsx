@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { gql, useMutation } from "@apollo/client";
 import toast, { Toaster } from "react-hot-toast";
-import { getSession } from "@auth0/nextjs-auth0";
+import { getSession } from "next-auth/react";
 import prisma from "../lib/prisma";
 
 const CreateLinkMutation = gql`
@@ -134,14 +134,18 @@ const Admin = () => {
 
 export default Admin;
 
-export const getServerSideProps = async ({ req, res }) => {
-  const session = getSession(req, res);
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+
+  console.log("&&&&&&&&&START");
+  console.log(session);
+  console.log("&&&&&&&&&END");
 
   if (!session) {
     return {
       redirect: {
         permanent: false,
-        destination: "/api/auth/login",
+        destination: "/sign-in",
       },
       props: {},
     };
