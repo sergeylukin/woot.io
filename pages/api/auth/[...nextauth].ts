@@ -158,19 +158,6 @@ export default NextAuth({
   ],
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
-      // if (account.provider === 'github') {
-      //   const githubUser = {
-      //     id: metadata.id,
-      //     login: metadata.login,
-      //     name: metadata.name,
-      //     avatar: user.image
-      //   }
-      //
-      //   user.accessToken = await getTokenFromYourAPIServer('github', githubUser)
-      //   return true
-      // }
-
-      // return false;
       return true;
     },
     async redirect({ url, baseUrl }) {
@@ -181,17 +168,12 @@ export default NextAuth({
         token.id = user.id;
         token.role = user.role;
       }
-      if (account) {
-        token.accessToken = account.access_token;
-      }
 
       return token;
     },
     async session({ session, token, user }) {
       const sess: Session = {
         ...session,
-        // @ts-ignore
-        accessToken: token && token.accessToken ? token.accessToken : null,
         user: {
           ...session.user,
           id: token && token.id ? (token.id as string) : null,

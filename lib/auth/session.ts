@@ -13,7 +13,6 @@ type SessionUser = DefaultSessionUser & {
 
 export type Session = DefaultSession & {
   user?: SessionUser;
-  accessToken: string | null;
 };
 
 export async function getSession(

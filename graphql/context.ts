@@ -4,7 +4,6 @@ import { getSession } from "next-auth/react";
 
 export type Context = {
   user?: any;
-  accessToken?: string;
   prisma: PrismaClient;
 };
 export async function createContext({ req }): Promise<Context> {
@@ -13,11 +12,9 @@ export async function createContext({ req }): Promise<Context> {
   // if the user is not logged in, omit returning the user and accessToken
   if (!session) return { prisma };
 
-  const { user, accessToken } = session;
+  const { user } = session;
   return {
     user,
-    // @ts-ignore
-    accessToken,
     prisma,
   };
 }
