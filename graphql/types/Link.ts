@@ -29,12 +29,12 @@ export const LinksQuery = extendType({
   type: "Query",
   definition(t) {
     t.field("links", {
-      type: "Link",
+      type: "Response",
       args: {
         first: intArg(),
         after: stringArg(),
       },
-      resolve: async (_, args, ctx) => {
+      async resolve(_, args, ctx) {
         let queryResults = null;
 
         if (args.after) {
