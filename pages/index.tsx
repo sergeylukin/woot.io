@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { gql, useQuery, useMutation } from "@apollo/client";
-import { useUser } from "@auth0/nextjs-auth0";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { AwesomeLink } from "../components/AwesomeLink";
 
@@ -27,13 +27,13 @@ const AllLinksQuery = gql`
 `;
 
 function Home() {
-  const { user } = useUser();
+  const { data: session } = useSession();
 
   const { data, loading, error, fetchMore } = useQuery(AllLinksQuery, {
     variables: { first: 3 },
   });
 
-  if (!user) {
+  if (!session) {
     return (
       <div className="flex items-center justify-center">
         To view the awesome links you need to{" "}
