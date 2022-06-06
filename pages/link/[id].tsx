@@ -6,7 +6,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { FavoritesQuery } from "../favorites";
 
 const BookmarkLinkMutation = gql`
-  mutation ($id: String!) {
+  mutation ($id: Int!) {
     bookmarkLink(id: $id) {
       title
       url
@@ -25,7 +25,7 @@ const Link = ({ link }) => {
 
   const bookmark = async () => {
     setIsLoading(true);
-    toast.promise(createBookmark({ variables: { id: link.id } }), {
+    toast.promise(createBookmark({ variables: { id: Number(link.id) } }), {
       loading: "working on it",
       success: "Saved successfully! 🎉",
       error: `Something went wrong 😥 Please try again`,
@@ -71,7 +71,7 @@ const Link = ({ link }) => {
 export default Link;
 
 export const getServerSideProps = async ({ params }) => {
-  const id = params.id;
+  const id = Number(params.id);
   const link = await prisma.link.findUnique({
     where: { id },
     select: {

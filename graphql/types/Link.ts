@@ -43,7 +43,7 @@ export const LinksQuery = extendType({
             take: args.first, // the number of items to return from the database
             skip: 1, // skip the cursor
             cursor: {
-              id: args.after, // the cursor
+              id: Number(args.after), // the cursor
             },
           });
         } else {

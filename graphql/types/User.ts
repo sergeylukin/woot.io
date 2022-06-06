@@ -11,15 +11,17 @@ export const User = objectType({
     t.string("image");
     t.field("role", { type: Role });
     t.list.field("bookmarks", {
-      type: Link,
+      type: "Link",
       async resolve(_parent, _args, ctx) {
-        return await ctx.prisma.user
-          .findUnique({
-            where: {
-              id: _parent.id,
-            },
-          })
-          .bookmarks();
+        const user = await ctx.prisma.user.findUnique({
+          where: {
+            id: _parent.id,
+          },
+          include: {
+            bookmarks: true,
+          },
+        });
+        return user.bookmarks ? user.bookmarks : [];
       },
     });
   },
@@ -45,7 +47,7 @@ export const UserFavorites = extendType({
           },
         });
         if (!user) throw new Error("Invalid user");
-        return user.bookmarks;
+        return user.bookmarks ? user.bookmarks : [];
       },
     });
   },
@@ -57,7 +59,7 @@ export const BookmarkLink = extendType({
     t.field("bookmarkLink", {
       type: "Link",
       args: {
-        id: stringArg(),
+        id: intArg(),
       },
       async resolve(_, args, ctx) {
         const link = await ctx.prisma.link.findUnique({
