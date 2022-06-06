@@ -36,12 +36,7 @@ function Home() {
   if (!session) {
     return (
       <div className="flex items-center justify-center">
-        To view the awesome links you need to{" "}
-        <Link href="/api/auth/login">
-          <a className=" block bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-            Login
-          </a>
-        </Link>
+        To view the awesome links you need to login
       </div>
     );
   }
