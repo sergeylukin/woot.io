@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Box } from "@chakra-ui/react";
 
 export const AwesomeLink = ({
   imageUrl,
@@ -10,14 +11,24 @@ export const AwesomeLink = ({
 }) => {
   return (
     <div key={id} className="shadow  max-w-md  rounded">
-      <img src={imageUrl} />
+      <Box
+        as="figure"
+        sx={{
+          minHeight: 170,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <img src={imageUrl} />
+      </Box>
       <div className="p-5 flex flex-col space-y-2">
         <p className="text-sm text-blue-500">{category}</p>
         <p className="text-lg font-medium">{title}</p>
         <p className="text-gray-600">{description}</p>
         <a href={url} className="flex hover:text-blue-500">
           {/* removes https from url */}
-          {url.replace(/(^\w+:|^)\/\//, '')}
+          {url.replace(/(^\w+:|^)\/\//, "")}
           <svg
             className="w-6 h-6"
             fill="currentColor"

@@ -21,7 +21,7 @@ export const User = objectType({
             bookmarks: true,
           },
         });
-        return user.bookmarks ? user.bookmarks : [];
+        return user && user.bookmarks ? user.bookmarks : [];
       },
     });
   },
@@ -47,7 +47,7 @@ export const UserFavorites = extendType({
           },
         });
         if (!user) throw new Error("Invalid user");
-        return user.bookmarks ? user.bookmarks : [];
+        return user && user.bookmarks ? user.bookmarks : [];
       },
     });
   },

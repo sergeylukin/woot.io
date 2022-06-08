@@ -16,11 +16,10 @@ export const links = [
   },
   {
     category: "Open Source",
-    description: "Utility-fist css framework",
-    imageUrl:
-      "https://tailwindcss.com/_next/static/media/twitter-large-card.85c0ff9e455da585949ff0aa50981857.jpg",
-    title: "TailwindCSS",
-    url: "https://tailwindcss.com",
+    description: "Bite-sized content sharing platform for developers",
+    imageUrl: "https://woot.io/static/woot.png",
+    title: "woot.io",
+    url: "https://woot.io",
   },
   {
     category: "Open Source",

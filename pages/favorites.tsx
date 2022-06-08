@@ -1,5 +1,6 @@
 import React from "react";
 import { AwesomeLink } from "../components/AwesomeLink";
+import { getSession } from "next-auth/react";
 import { gql, useQuery } from "@apollo/client";
 
 export const FavoritesQuery = gql`
@@ -50,3 +51,17 @@ const Favorites = () => {
 };
 
 export default Favorites;
+
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession(ctx);
+
+  if (!session) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+      props: {},
+    };
+  }
+};

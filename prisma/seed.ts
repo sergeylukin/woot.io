@@ -9,7 +9,8 @@ async function main() {
   if (!databaseIsEmpty) return;
   await prisma.user.create({
     data: {
-      email: `testemail@gmail.com`,
+      name: "woot.io",
+      email: `woot@woot.io`,
       role: "ADMIN",
     },
   });
